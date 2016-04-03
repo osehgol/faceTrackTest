@@ -33,33 +33,32 @@ void ofApp::draw() {
     int n = classifier.size();
     int primary = classifier.getPrimaryExpression();
     
-    
-    if (primary == 2) {
-        //smiling!!!
-        //ofDrawBitmapString(classifier.getProbability(1), 5, 9);
-        dis.displayBrightness(1);
-    }
-    
-    if (primary == 1) {
-        //neutral!!!
-        //ofDrawBitmapString(classifier.getProbability(1), 5, 9);
-        dis.displayBrightness(0.1);
-    }
-    
 //    if (primary == 0) {
 //        //raised eyebrows!!!
 //        ofDrawBitmapString(classifier.getProbability(1), 5, 9);
 //        dis.displayBrightness(0.1);
 //    }
     
-    for(int i = 0; i < n; i++){
-        ofSetColor(i == primary ? ofColor::red : ofColor::black);
-        ofRect(0, 0, w * classifier.getProbability(i) + .5, h);
-        ofSetColor(255);
-        ofDrawBitmapString(classifier.getDescription(i), 5, 9);
-        ofTranslate(0, h + 5);
-        
+    if (primary == 1) {
+        //neutral!!!
+        ofDrawBitmapString(classifier.getProbability(1), 5, 9);
+        dis.displayBrightness(0.1);
     }
+
+    if (primary == 2) {
+        //smiling!!!
+        ofDrawBitmapString(classifier.getProbability(1), 5, 9);
+        dis.displayBrightness(1);
+    }
+    
+//    for(int i = 0; i < n; i++){
+//        ofSetColor(i == primary ? ofColor::red : ofColor::black);
+//        //ofRect(0, 0, w * classifier.getProbability(i) + .5, h);
+//        ofSetColor(255);
+//        ofDrawBitmapString(classifier.getDescription(i), 5, 9);
+//        ofTranslate(0, h + 5);
+//        
+//    }
     ofPopMatrix();
     ofPopStyle();
     
